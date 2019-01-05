@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CalendarEntry } from '../model/calendar-entry';
 import { from, Observable } from 'rxjs';
 import { PersistenceFactoryService } from './persistence-factory.service';
+import { EntryPersistence } from './entry-persistence';
 
 @Injectable({
     providedIn: 'root'
@@ -21,7 +22,8 @@ export class CalendarEntryService {
     }
 
     save(entry: CalendarEntry): void {
-        this.persisterFactoryService.build(entry.entryType).save(entry);
+        const persistence: EntryPersistence = this.persisterFactoryService.build(entry.entryType);
+        persistence.save(entry);
     }
 
 }
