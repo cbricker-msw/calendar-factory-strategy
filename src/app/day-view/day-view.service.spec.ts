@@ -1,10 +1,17 @@
 import { DayViewService } from './day-view.service';
+import { CalendarEntry } from '../model/calendar-entry';
+
+class MockCalendarEntryService {
+    save() {}
+}
 
 describe('DayViewService', () => {
     let service: DayViewService;
+    let mockCalendarEntryService: any;
 
     beforeEach(() => {
-        service = new DayViewService();
+        mockCalendarEntryService = new MockCalendarEntryService();
+        service = new DayViewService(mockCalendarEntryService);
     });
 
     it('should be created', () => {
@@ -12,20 +19,11 @@ describe('DayViewService', () => {
     });
 
     describe('#saveEntry', () => {
-        it('should ??? when entry is an event', () => {
-            expect(true).toEqual(true);
-        });
-
-        it('should ??? when entry is a reminder', () => {
-            expect(true).toEqual(true);
-        });
-
-        it('should ??? when entry is a goal', () => {
-            expect(true).toEqual(true);
-        });
-
-        it('should ??? when entry is an out-of-office', () => {
-            expect(true).toEqual(true);
+        it('should call the calendar entry service save when called', () => {
+            const entry = new CalendarEntry('entry', 'Test Entry', 'event');
+            spyOn(mockCalendarEntryService, 'save');
+            service.saveEntry(entry);
+            expect(mockCalendarEntryService.save).toHaveBeenCalledWith(entry);
         });
     });
 });
