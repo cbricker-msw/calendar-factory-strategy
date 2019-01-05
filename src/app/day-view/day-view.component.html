@@ -1,0 +1,10 @@
+<div>
+    <div *ngFor="let entry of entries | async; trackBy: trackByFn">
+        <ul>
+            <li>
+                {{ entry.entryName }}
+                <button (click)="onUpdate(entry)">Update</button>
+            </li>
+        </ul>
+    </div>
+</div>
