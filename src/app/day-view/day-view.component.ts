@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { from, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { CalendarEntry } from '../model/calendar-entry';
+import { DayViewService } from './day-view.service';
 
 @Component({
     selector: 'app-day-view',
@@ -11,49 +12,28 @@ export class DayViewComponent implements OnInit {
 
     entries: Observable<CalendarEntry[]>;
 
-    constructor() {
+    constructor(private dayViewService: DayViewService) {
     }
 
     ngOnInit() {
-        this.entries = from([[
-            new CalendarEntry('e1', 'Test Event', 'event'),
-            new CalendarEntry('e2', 'Test Reminder', 'reminder'),
-            new CalendarEntry('e3', 'Test Goal', 'goal'),
-            new CalendarEntry('e4', 'Test Out-of-office', 'outOfOffice')
-        ]]);
+        this.entries = this.dayViewService.getEntries();
     }
 
     onUpdate(entryToUpdate: CalendarEntry): void {
         switch (entryToUpdate.entryType) {
             case 'event':
-                return this.saveEvent(entryToUpdate);
+                return this.dayViewService.saveEvent(entryToUpdate);
             case 'reminder':
-                return this.saveReminder(entryToUpdate);
+                return this.dayViewService.saveReminder(entryToUpdate);
             case 'goal':
-                return this.saveGoal(entryToUpdate);
+                return this.dayViewService.saveGoal(entryToUpdate);
             case 'outOfOffice':
-                return this.saveOutOfOffice(entryToUpdate);
+                return this.dayViewService.saveOutOfOffice(entryToUpdate);
         }
     }
 
     trackByFn(index: number, entry: CalendarEntry): string {
         return entry.entryKey;
-    }
-
-    private saveEvent(entry: CalendarEntry): void {
-        console.log(`Saved Event ${entry.entryName}`);
-    }
-
-    private saveReminder(entry: CalendarEntry): void {
-        console.log(`Saved Reminder ${entry.entryName}`);
-    }
-
-    private saveGoal(entry: CalendarEntry): void {
-        console.log(`Saved Goal ${entry.entryName}`);
-    }
-
-    private saveOutOfOffice(entry: CalendarEntry): void {
-        console.log(`Saved Out-of-office ${entry.entryName}`);
     }
 
 }
