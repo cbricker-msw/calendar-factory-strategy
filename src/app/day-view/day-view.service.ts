@@ -19,19 +19,32 @@ export class DayViewService {
         ]]);
     }
 
-    saveEvent(entry: CalendarEntry): void {
+    saveEntry(entry: CalendarEntry): void {
+        switch (entry.entryType) {
+            case 'event':
+                return this.saveEvent(entry);
+            case 'reminder':
+                return this.saveReminder(entry);
+            case 'goal':
+                return this.saveGoal(entry);
+            case 'outOfOffice':
+                return this.saveOutOfOffice(entry);
+        }
+    }
+
+    private saveEvent(entry: CalendarEntry): void {
         console.log(`Saved Event ${entry.entryName}`);
     }
 
-    saveReminder(entry: CalendarEntry): void {
+    private saveReminder(entry: CalendarEntry): void {
         console.log(`Saved Reminder ${entry.entryName}`);
     }
 
-    saveGoal(entry: CalendarEntry): void {
+    private saveGoal(entry: CalendarEntry): void {
         console.log(`Saved Goal ${entry.entryName}`);
     }
 
-    saveOutOfOffice(entry: CalendarEntry): void {
+    private saveOutOfOffice(entry: CalendarEntry): void {
         console.log(`Saved Out-of-office ${entry.entryName}`);
     }
 

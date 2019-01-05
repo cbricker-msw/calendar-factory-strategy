@@ -20,16 +20,7 @@ export class DayViewComponent implements OnInit {
     }
 
     onUpdate(entryToUpdate: CalendarEntry): void {
-        switch (entryToUpdate.entryType) {
-            case 'event':
-                return this.dayViewService.saveEvent(entryToUpdate);
-            case 'reminder':
-                return this.dayViewService.saveReminder(entryToUpdate);
-            case 'goal':
-                return this.dayViewService.saveGoal(entryToUpdate);
-            case 'outOfOffice':
-                return this.dayViewService.saveOutOfOffice(entryToUpdate);
-        }
+        this.dayViewService.saveEntry(entryToUpdate);
     }
 
     trackByFn(index: number, entry: CalendarEntry): string {
