@@ -29,10 +29,12 @@
 /connect.lock
 /coverage
 /libpeerconnection.log
+package-lock.json
 npm-debug.log
 yarn-error.log
 testem.log
 /typings
+src/environments/app-config.json
 
 # System Files
 .DS_Store

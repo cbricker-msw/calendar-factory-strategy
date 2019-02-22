@@ -1,25 +1,20 @@
-export type EntryType = 'event' | 'reminder' | 'goal' | 'outOfOffice';
+export type EntryType = 'event' | 'reminder' | 'outOfOffice';
 
-export class CalendarEntry {
-    private key: string;
-    private name: string;
-    private type: EntryType;
+export interface CalendarEntry {
+    key: string;
+    title: string;
+    type: EntryType;
+}
 
-    constructor(key: string, name: string, type: EntryType) {
-        this.key = key;
-        this.name = name;
-        this.type = type;
-    }
+export interface Event extends CalendarEntry {
+    start: Date;
+    end: Date;
+}
 
-    get entryKey(): string {
-        return this.key;
-    }
+export interface OutOfOffice extends Event {
+    declineMessage: string;
+}
 
-    get entryName(): string {
-        return `${this.type} - ${this.name}`;
-    }
-
-    get entryType(): EntryType {
-        return this.type;
-    }
+export interface Reminder extends CalendarEntry {
+    when: Date;
 }
