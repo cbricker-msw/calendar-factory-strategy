@@ -1,7 +1,7 @@
 export type EntryType = 'event' | 'reminder' | 'outOfOffice';
 
 export interface CalendarEntry {
-    key: string;
+    key?: string;
     title: string;
     type: EntryType;
 }

@@ -1,10 +1,9 @@
-<div>
+<div class="calendar-event">
     <div *ngFor="let entry of entries; trackBy: trackByFn">
-        <ul>
-            <li>
-                {{ entry.title }}
-                <button (click)="onUpdate(entry)">Update</button>
-            </li>
-        </ul>
+        <mat-card class="calendar-event-card">
+            <mat-card-title>
+                <input matInput placeholder="Title" [(ngModel)]="entry.title" (blur)="onUpdate(entry)">
+            </mat-card-title>
+        </mat-card>
     </div>
 </div>

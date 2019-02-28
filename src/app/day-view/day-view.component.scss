@@ -1,0 +1,11 @@
+.calendar-event {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    &-card {
+        max-width: 350px;
+        margin: 0 auto;
+        padding: 0;
+    }
+}

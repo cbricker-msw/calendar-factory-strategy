@@ -6,6 +6,9 @@ import { DayViewComponent } from './day-view/day-view.component';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule } from '@angular/material';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -15,7 +18,10 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     imports: [
         BrowserModule,
         AngularFireModule.initializeApp(environment.firebase),
-        AngularFirestoreModule
+        AngularFirestoreModule,
+        BrowserAnimationsModule,
+        MatCardModule,
+        FormsModule
     ],
     providers: [],
     bootstrap: [AppComponent]
